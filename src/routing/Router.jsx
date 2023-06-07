@@ -33,13 +33,13 @@ export const Router = () => {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/categories" element={<Categories />}>
+        <Route path="categories" element={<Categories />}>
           <Route path=":id" element={<Category />} />
         </Route>
-        <Route path="/products" element={<Products />}>
-          <Route path=":id" element={<Product />} />
+        <Route path="products" element={<Products />}>
+          <Route path="add" element={<Product />} />
         </Route>
-        <Route path="/orders" element={<Orders />}>
+        <Route path="orders" element={<Orders />}>
           <Route path=":id" element={<Order />} />
         </Route>
       </Routes>
