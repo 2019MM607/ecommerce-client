@@ -5,11 +5,30 @@ import { useState, useEffect } from "react";
 export const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [open, setOpen] = useState(false);
+  const [id, setId] = useState("");
 
   const loadOrders = async () => {
-    const { data } = await api.get("orders");
-    data ? setOrders(data) : setOrders([]);
-  }
+    //const { data } = await api.get("orders");
+    //data ? setOrders(data) : setOrders([]);
+    setOrders([
+      {
+        id: 1,
+        user: {
+          name: "Juan",
+        },
+        createdAt: "2021-10-10",
+        total: 100,
+      },
+      {
+        id: 2,
+        user: {
+          name: "Pedro",
+        },
+        createdAt: "2021-10-10",
+        total: 100,
+      },
+    ]);
+  };
 
   useEffect(() => {
     loadOrders();
@@ -18,6 +37,12 @@ export const Orders = () => {
   const cerrarModal = () => {
     setOpen(false);
   };
+
+  const handleShowProducts = (id) => {
+    setId(id);
+    setOpen(true);
+  };
+
   return (
     <div className="mt-10 overflow-x-auto flex justify-center items-center">
       <table className="table table-xs w-3/4">
@@ -33,41 +58,40 @@ export const Orders = () => {
         <tbody>
           {orders.map((order) => (
             <>
-            <tr className="hover">
-            <th>{order?.id}</th>
-            <td>{order?.user.name}</td>
-            <td>{order?.createdAt}</td>
-            <td>$ {order?.total}</td>
-            <td className="pl-6 ">
-              <div onClick={() => setOpen(true)}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-box-arrow-up-right"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fill="evenodd"
-                    d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"
-                  />
-                  <path
-                    fill="evenodd"
-                    d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
-                  />
-                </svg>
-              </div>
-            </td>
-          </tr>
+              <tr className="hover">
+                <th>{order?.id}</th>
+                <td>{order?.user.name}</td>
+                <td>{order?.createdAt}</td>
+                <td>$ {order?.total}</td>
+                <td className="pl-6 ">
+                  <div onClick={() => handleShowProducts(order?.id)}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      className="bi bi-box-arrow-up-right"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill="evenodd"
+                        d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"
+                      />
+                      <path
+                        fill="evenodd"
+                        d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
+                      />
+                    </svg>
+                  </div>
+                </td>
+              </tr>
             </>
           ))}
-          
         </tbody>
       </table>
       {open && (
         <div className="absolute top-0 bottom-0 right-0 left-0 bg-neutral/80 flex justify-center items-center">
-          <ShowProducts cerrarModal={cerrarModal} />
+          <ShowProducts cerrarModal={cerrarModal} id={id} />
         </div>
       )}
     </div>

@@ -1,4 +1,4 @@
-export const ShowProducts = ({ cerrarModal }) => {
+export const ShowProducts = ({ cerrarModal, id }) => {
   return (
     <dh-component>
       <div
@@ -9,7 +9,7 @@ export const ShowProducts = ({ cerrarModal }) => {
           <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between">
               <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">
-                Orden ID: 1
+                Orden ID: {id}
               </h1>
               <button className="btn btn-square" onClick={cerrarModal}>
                 <svg
