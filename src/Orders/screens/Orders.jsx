@@ -18,6 +18,7 @@ export const Orders = () => {
   const cerrarModal = () => {
     setOpen(false);
   };
+  
   return (
     <div className="mt-10 overflow-x-auto flex justify-center items-center">
       <table className="table table-xs w-3/4">
