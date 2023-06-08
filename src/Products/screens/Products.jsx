@@ -6,7 +6,7 @@ import AddIcon from "@mui/icons-material/Add";
 export const Products = () => {
   const [open, setOpen] = useState(false);
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col items-center justify-center">
       <div className="w-3/4 m-12">
         <table className="table">
           {/* head */}
@@ -46,18 +46,14 @@ export const Products = () => {
                 </div>
               </td>
               <td>
-                <div className="flex justify-center items-center">
-                  <div className="py-1 px-2 bg-green-100 text-xs font-bold text-green-800 rounded-lg">
-                    25 lbs
-                  </div>
+                <div className="py-1 px-2 bg-green-100 text-xs font-bold text-green-800 rounded-lg flex justify-center">
+                  25 lbs
                 </div>
               </td>
               <td>Some tomatoes used as an example</td>
               <td>
-                <div className="flex justify-center items-center">
-                  <div className="py-1 px-2 bg-gray-200 text-xs font-bold rounded-lg">
-                    Vegetales
-                  </div>
+                <div className="py-1 px-2 bg-gray-200 text-xs font-bold rounded-lg flex justify-center">
+                  Vegetales
                 </div>
               </td>
               <th>
@@ -171,7 +167,7 @@ export const Products = () => {
       <Fab
         color="primary"
         aria-label="add"
-        style={{ marginLeft: 1200 }}
+        style={{ marginLeft: 1375, marginTop: 100 }}
         className="fixed"
         onClick={() => setOpen(!open)}
       >
