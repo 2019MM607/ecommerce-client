@@ -1,6 +1,12 @@
+import { useState } from "react";
+import { AddProduct } from "../../components/modal/AddProduct";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+
 export const Products = () => {
+  const [open, setOpen] = useState(false);
   return (
-    <div className="flex justify-center">
+    <div className="flex flex-col justify-center">
       <div className="w-3/4 m-12">
         <table className="table">
           {/* head */}
@@ -40,12 +46,20 @@ export const Products = () => {
                 </div>
               </td>
               <td>
-                25
-                <br />
-                <span className="badge badge-ghost badge-sm">lb</span>
+                <div className="flex justify-center items-center">
+                  <div className="py-1 px-2 bg-green-100 text-xs font-bold text-green-800 rounded-lg">
+                    25 lbs
+                  </div>
+                </div>
               </td>
               <td>Some tomatoes used as an example</td>
-              <th>Vegetales</th>
+              <td>
+                <div className="flex justify-center items-center">
+                  <div className="py-1 px-2 bg-gray-200 text-xs font-bold rounded-lg">
+                    Vegetales
+                  </div>
+                </div>
+              </td>
               <th>
                 <button className="btn btn-ghost btn-xs">
                   <div className="w-6 h-6">
@@ -154,6 +168,24 @@ export const Products = () => {
           </tbody>
         </table>
       </div>
+      <Fab
+        color="primary"
+        aria-label="add"
+        style={{ marginLeft: 1200 }}
+        className="fixed"
+        onClick={() => setOpen(!open)}
+      >
+        <AddIcon />
+      </Fab>
+      {
+        // Modal
+
+        open && (
+          <div className="absolute top-0 bottom-0 right-0 left-0 bg-neutral/80 flex justify-center items-center">
+            <AddProduct setOpen={setOpen} />
+          </div>
+        )
+      }
     </div>
   );
 };
